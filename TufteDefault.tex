@@ -1,0 +1,102 @@
+\documentclass[justified]{tufte-handout}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{setspace, graphicx, enumerate}
+\usepackage{mathspec}
+\usepackage{xltxtra,xunicode}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\newcommand{\euro}{€}
+\usepackage{biblatex}
+\usepackage{graphicx}
+\usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\hypersetup{colorlinks}
+\setmainfont{Avenir Next Medium}
+
+% For nicely typeset tabular material
+\usepackage{booktabs}
+
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+\usepackage{xspace}
+
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$if(numbersections)$
+\setcounter{secnumdepth}{2}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+\usepackage{polyglossia}
+\setmainlanguage{$mainlang$}
+
+% remove indentation
+\makeatletter
+% Paragraph indentation and separation for normal text
+\renewcommand{\@tufte@reset@par}{%
+  \setlength{\RaggedRightParindent}{1.0pc}%
+  \setlength{\JustifyingParindent}{0pc}%
+  \setlength{\parindent}{0pc}%
+  \setlength{\parskip}{0pt}%
+}
+\@tufte@reset@par
+
+% Paragraph indentation and separation for marginal text
+\renewcommand{\@tufte@margin@par}{%
+  \setlength{\RaggedRightParindent}{0.5pc}%
+  \setlength{\JustifyingParindent}{0.5pc}%
+  \setlength{\parindent}{0.5pc}%
+  \setlength{\parskip}{0pt}%
+}
+\makeatother
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$date$}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\rhead{\thepage}
+\lhead{\textsc{\title}}
+\chead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$body$
+
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+
+\end{document}
