@@ -141,8 +141,6 @@ $if(lfoot)$\lfoot{$lfoot$}$endif$
 $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\thepage}$endif$
 $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
 
-
-
 % Fake a table of contents to get the hyperlinks 
 %\makeatletter 
 %\newcommand\silenttableofcontents{% 
@@ -153,20 +151,22 @@ $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
 %\makeatother 
 
 %HEADER VARIABLES
+
 $if(title)$
-\title{\bigskip \bigskip $title$}
+\pretitle{\begin{flushleft}\huge}
+\title{\textbf{$title$}}
+\posttitle{\par\end{flushleft}}
+\setlength{\droptitle}{-75pt}
 $endif$
-%$if(title)$
-%\title{$title$}
-%$endif$
-%\author{$for(author)$$author$$sep$\\$endfor$}
-\author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
-%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
-%$if(author)$
-%\author{$for(author)$$author$$sep$ \and $endfor$}
-%$endif$
+$if(author)$
+\preauthor{\begin{flushleft}\large}
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\postauthor{\par\end{flushleft}}
+$endif$
 $if(date)$
+\predate{\begin{flushleft}\small}
 \date{$date$}
+\postdate{\par\end{flushleft}}
 $endif$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
