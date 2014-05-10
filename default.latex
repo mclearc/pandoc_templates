@@ -98,8 +98,9 @@ $endfor$
 \usepackage{xcolor}
 %\definecolor{gray}{rgb}{0.459,0.438,0.471}
 \usepackage[hang,flushmargin]{footmisc}
-\usepackage{footnotebackref}
+%\usepackage{footnotebackref}
 \usepackage{titling}
+\usepackage{footnote}
 
 
 %LAYOUT SETTINGS
@@ -138,9 +139,8 @@ $else$
 \rhead{\author{$author$}}
 $endif$
 $if(lfoot)$\lfoot{$lfoot$}$endif$
-$if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\thepage}$endif$
+$if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{}$endif$
 $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
-
 % Fake a table of contents to get the hyperlinks 
 %\makeatletter 
 %\newcommand\silenttableofcontents{% 
@@ -156,18 +156,19 @@ $if(title)$
 \pretitle{\begin{flushleft}\huge}
 \title{\textbf{$title$}}
 \posttitle{\par\end{flushleft}}
-\setlength{\droptitle}{-75pt}
+\setlength{\droptitle}{-80pt}
 $endif$
 $if(author)$
 \preauthor{\begin{flushleft}\large}
 \author{$for(author)$$author$$sep$ \and $endfor$}
-\postauthor{\par\end{flushleft}}
+\postauthor{\par\end{flushleft}\vspace*{-5mm}}
 $endif$
 $if(date)$
 \predate{\begin{flushleft}\small}
 \date{$date$}
 \postdate{\par\end{flushleft}}
 $endif$
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -213,7 +214,6 @@ $else$
 $endif$
 
 $body$
-
 
 $for(include-after)$
 $include-after$
