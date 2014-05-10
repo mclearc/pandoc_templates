@@ -99,6 +99,8 @@ $endfor$
 %\definecolor{gray}{rgb}{0.459,0.438,0.471}
 \usepackage[hang,flushmargin]{footmisc}
 \usepackage{footnotebackref}
+\usepackage{titling}
+
 
 %LAYOUT SETTINGS
 $if(noindent)$
@@ -120,6 +122,9 @@ $endif$
 %\setlength{\footnotesep}{0.35cm}
 \setlength{\headheight}{15pt}
 \setlength{\epigraphwidth}{.8\textwidth}
+
+\newfontface\smallcapsfont[Scale=0.75,LetterSpace=3.0]{Optima}
+\renewcommand\textsc[1]{{\smallcapsfont \uppercase{#1}}}
 
 %PAGE STYLE
 \pagestyle{fancy}
