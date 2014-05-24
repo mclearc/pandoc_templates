@@ -1,14 +1,37 @@
+$if(documentclass)$\documentclass{$documentclass$}
+$else$
 \documentclass[11pt,oneside]{article}
+$endif$
 %\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$]{$documentclass$}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fontspec,xltxtra,xunicode}
+$if(mainfont)$
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\setromanfont[Mapping=tex-text]{$mainfont$}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Optima}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+$else$
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
 \setromanfont[Mapping=tex-text]{Optima}
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Optima}
 \setmonofont[Scale=MatchLowercase]{Andale Mono}
+$endif$
 
 %VARIABLE OPTIONS
+
+%BEAMER
+$if(theme)$
+\usetheme{$theme$}
+$endif$
+$if(colortheme)$
+\usecolortheme{$colortheme$}
+$endif$
+\usepackage{graphicx}
+\setkeys{Gin}{keepaspectratio}
+\setkeys{Gin}{width=\textwidth}
+\setkeys{Gin}{height=.75\textheight}
+
 $if(lhs)$
 \usepackage{listings}
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
