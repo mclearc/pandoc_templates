@@ -1,4 +1,4 @@
-\documentclass[11pt,article,oneside]{article}
+\documentclass[11pt,oneside]{article}
 %\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$]{$documentclass$}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -32,9 +32,9 @@ $if(tables)$
 \usepackage{float} % provides the H option for float placement
 $endif$
 
-%$if(url)$
-%\usepackage{url}
-%$endif$
+$if(url)$
+\usepackage{url}
+$endif$
 
 $if(graphics)$
 \usepackage{graphicx}
@@ -48,14 +48,6 @@ $if(graphics)$
 \let\Oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 $endif$
-
-\usepackage[setpagesize=false, unicode=false,  xetex]{hyperref} 
-\hypersetup{
-  colorlinks=true,
-  citecolor=blue,
-  linkcolor=purple,
-  urlcolor=teal}
-%\hypersetup{breaklinks=true, pdfborder={0 0 0}, colorlinks=true}
 
 $if(strikeout)$
 \usepackage[normalem]{ulem}
@@ -73,7 +65,7 @@ $endif$
 
 $if(numbersections)$
 $else$
-\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{0}
 $endif$
 
 $if(verbatim-in-note)$
@@ -97,10 +89,19 @@ $endfor$
 \usepackage$if(geometry)$[$geometry$]$endif${geometry}
 \usepackage{xcolor}
 %\definecolor{gray}{rgb}{0.459,0.438,0.471}
-\usepackage[hang,flushmargin]{footmisc}
+\usepackage[hang,flushmargin, stable, multiple]{footmisc}
 %\usepackage{footnotebackref}
 \usepackage{titling}
 \usepackage{footnote}
+\makesavenoteenv{minipage}
+\usepackage{manyfoot}
+\DeclareNewFootnote{A}[fnsymbol]
+\usepackage[setpagesize=false, unicode=false,  xetex, breaklinks=true, backref]{hyperref} 
+\hypersetup{
+  colorlinks=true,
+  citecolor=blue,
+  linkcolor=purple,
+  urlcolor=teal}
 
 
 %LAYOUT SETTINGS
@@ -113,6 +114,9 @@ $endif$
 %\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 %\renewcommand*\thesubsection{\arabic{subsection}}
+
+%symbol footnote flag, helpful for epigraph note
+\long\def\symbolfootnote[#1]#2{\begingroup\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
 \addtolength{\footskip}{0.5cm}
 \setlength{\footnotemargin}{0.3cm}
@@ -131,12 +135,12 @@ $endif$
 \pagestyle{fancy}
 $if(lhead)$\lhead{$lhead$}
 $else$
-\lhead{\title{$title$}}
+\lhead{\thetitle}
 $endif$
 \chead{}
 $if(rhead)$\rhead{$rhead$}
 $else$
-\rhead{\author{$author$}}
+\rhead{\theauthor}
 $endif$
 $if(lfoot)$\lfoot{$lfoot$}$endif$
 $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{}$endif$
@@ -155,16 +159,16 @@ $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
 $if(title)$
 \pretitle{\begin{flushleft}\huge}
 \title{\textbf{$title$}}
-\posttitle{\par\end{flushleft}}
+\posttitle{\par\end{flushleft}\vspace*{-5mm}}
 \setlength{\droptitle}{-80pt}
 $endif$
 $if(author)$
 \preauthor{\begin{flushleft}\large}
 \author{$for(author)$$author$$sep$ \and $endfor$}
-\postauthor{\par\end{flushleft}\vspace*{-5mm}}
+\postauthor{\par\end{flushleft}\vspace*{-6mm}}
 $endif$
 $if(date)$
-\predate{\begin{flushleft}\small}
+\predate{\begin{flushleft}\footnotesize}
 \date{$date$}
 \postdate{\par\end{flushleft}}
 $endif$
