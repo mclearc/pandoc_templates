@@ -1,4 +1,4 @@
-$if(documentclass)$\documentclass{$documentclass$}
+$if(documentclass)$\documentclass[$if(handout)$$endif$, 11pt]{$documentclass$}
 $else$
 \documentclass[11pt,oneside]{article}
 $endif$
