@@ -109,6 +109,7 @@ $endfor$
 \usepackage{microtype}
 \usepackage{epigraph}
 \usepackage{csquotes}
+\usepackage{comment}
 \usepackage$if(geometry)$[$geometry$]$endif${geometry}
 \usepackage{xcolor}
 %\definecolor{gray}{rgb}{0.459,0.438,0.471}
@@ -119,7 +120,7 @@ $endfor$
 \makesavenoteenv{minipage}
 \usepackage{manyfoot}
 \DeclareNewFootnote{A}[fnsymbol]
-\usepackage[setpagesize=false, unicode=false,  xetex, breaklinks=true, backref]{hyperref} 
+\usepackage[setpagesize=false, unicode=false,  xetex, breaklinks=true, pagebackref=true]{hyperref} 
 \hypersetup{
   colorlinks=true,
   citecolor=blue,
@@ -179,6 +180,18 @@ $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
 
 %HEADER VARIABLES
 
+%$if(title)$
+%\title{\bigskip \bigskip $title$}
+%$endif$ 
+
+%\author{$for(author)$$author$$sep$\\$endfor$}
+
+
+
+%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
+
+%\date{}
+
 $if(title)$
 \pretitle{\begin{flushleft}\huge}
 \title{\textbf{$title$}}
@@ -186,14 +199,17 @@ $if(title)$
 \setlength{\droptitle}{-80pt}
 $endif$
 $if(author)$
-\preauthor{\begin{flushleft}\large}
-\author{$for(author)$$author$$sep$ \and $endfor$}
-\postauthor{\par\end{flushleft}\vspace*{-6mm}}
+\preauthor{\begin{flushleft}\Large}
+%\author{$for(author)$\Large $author.name$\vspace{0.05in}   $sep$ \and $endfor$}
+\author{$for(author)$$author$ \newline\footnotesize{\emph{$affiliation$}} \newline\footnotesize $authoremail$ $endfor$}
+\postauthor{\par\end{flushleft}\vspace*{-9mm}}
 $endif$
 $if(date)$
 \predate{\begin{flushleft}\footnotesize}
 \date{$date$}
 \postdate{\par\end{flushleft}}
+$else$
+\date{}
 $endif$
 
 
@@ -217,7 +233,7 @@ $if(abstract)$
 
 \begin{abstract}
 
-\noindent $abstract$
+\noindent \footnotesize{$abstract$}
 
 \end{abstract}
 
@@ -242,9 +258,27 @@ $endif$
 
 $body$
 
+$if(newpage)$
+\newpage
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{Bibliography}
+$else$
+\renewcommand\refname{References}
+$endif$
+$endif$
+\bibliography{$biblio-files$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=References]$endif$
+
+$endif$
 $for(include-after)$
 $include-after$
 
 $endfor$
-%\printbibliography % place in the document body where list of citations
 \end{document}
