@@ -120,13 +120,29 @@ $endfor$
 \makesavenoteenv{minipage}
 \usepackage{manyfoot}
 \DeclareNewFootnote{A}[fnsymbol]
-\usepackage[setpagesize=false, unicode=false,  xetex, breaklinks=true, pagebackref=true]{hyperref} 
+\usepackage[setpagesize=false, unicode=false,  xetex, breaklinks=true]{hyperref} 
 \hypersetup{
   colorlinks=true,
-  citecolor=blue,
+  citecolor=teal,
   linkcolor=purple,
   urlcolor=teal}
 
+$if(biblatex)$
+\usepackage[hyperref=true,
+			backref=true,
+			backend=biber,
+			style=authoryear,
+            autocite=footnote,  %turn autocites into footnotes
+            isbn=false,         %don't print ISBNs
+            doi=true,           %print DOIs
+            url=false,          %don't print URLs
+            ]{biblatex}
+\addbibresource{/Users/Roambot/Dropbox/PDFLibrary/Master.bib}
+\DefineBibliographyStrings{english}{%
+    backrefpage  ={p.}, % for single page number
+    backrefpages ={pp.} % for multiple page numbers
+}
+$endif$
 
 %LAYOUT SETTINGS
 $if(noindent)$
@@ -201,7 +217,7 @@ $endif$
 $if(author)$
 \preauthor{\begin{flushleft}\Large}
 %\author{$for(author)$\Large $author.name$\vspace{0.05in}   $sep$ \and $endfor$}
-\author{$for(author)$$author$ \newline\footnotesize{\emph{$affiliation$}} \newline\footnotesize $authoremail$ $endfor$}
+\author{$for(author)$$author$ $if(affiliation)$\newline\footnotesize{\emph{$affiliation$}}$endif$ $if(authoremail)$\newline\footnotesize $authoremail$ $endif$ $endfor$}
 \postauthor{\par\end{flushleft}\vspace*{-9mm}}
 $endif$
 $if(date)$
@@ -211,6 +227,8 @@ $if(date)$
 $else$
 \date{}
 $endif$
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -260,23 +278,26 @@ $body$
 
 $if(newpage)$
 \newpage
-$if(natbib)$
-$if(biblio-files)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{Bibliography}
-$else$
-\renewcommand\refname{References}
 $endif$
-$endif$
-\bibliography{$biblio-files$}
 
-$endif$
-$endif$
+% $if(natbib)$
+% $if(biblio-files)$
+% $if(biblio-title)$
+% $if(book-class)$
+% \renewcommand\bibname{Bibliography}
+% $else$
+% \renewcommand\refname{References}
+% $endif$
+% $endif$
+% \bibliography{$biblio-files$}
+
+% $endif$
+% $endif$
+
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=References]$endif$
-
 $endif$
+
 $for(include-after)$
 $include-after$
 
