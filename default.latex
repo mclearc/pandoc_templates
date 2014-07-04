@@ -100,6 +100,7 @@ $header-includes$
 $endfor$
 
 %PACKAGES
+\usepackage{soul}
 \usepackage{setspace}
 \usepackage{mdwlist}
 \usepackage{fancyhdr}
@@ -111,7 +112,7 @@ $endfor$
 \usepackage{csquotes}
 \usepackage{comment}
 \usepackage$if(geometry)$[$geometry$]$endif${geometry}
-\usepackage{xcolor}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 %\definecolor{gray}{rgb}{0.459,0.438,0.471}
 \usepackage[hang,flushmargin, stable, multiple]{footmisc}
 %\usepackage{footnotebackref}
@@ -280,21 +281,21 @@ $if(newpage)$
 \newpage
 $endif$
 
-% $if(natbib)$
-% $if(biblio-files)$
-% $if(biblio-title)$
-% $if(book-class)$
-% \renewcommand\bibname{Bibliography}
-% $else$
-% \renewcommand\refname{References}
-% $endif$
-% $endif$
-% \bibliography{$biblio-files$}
-
-% $endif$
-% $endif$
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{Bibliography}
+$else$
+\renewcommand\refname{References}
+$endif$
+$endif$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
 
 $if(biblatex)$
+\addcontentsline{toc}{section}{References}
 \printbibliography$if(biblio-title)$[title=References]$endif$
 $endif$
 
