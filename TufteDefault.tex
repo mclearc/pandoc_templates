@@ -1,4 +1,4 @@
-\documentclass[justified]{tufte-handout}
+\documentclass[nols, notitlepage, notoc, sfsidenotes]{tufte-handout}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsthm, amsmath, amssymb}
@@ -7,15 +7,15 @@
 \usepackage{mathspec}
 \usepackage{xltxtra,xunicode}
 \usepackage{fontspec}
-\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\usepackage{longtable}
 \newcommand{\euro}{€}
-\usepackage{biblatex}
 \usepackage{graphicx}
-\usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\hypersetup{colorlinks}
-\setmainfont{Avenir Next Medium}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\setromanfont[Mapping=tex-text]{Palatino}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Optima}
+\setmonofont[Scale=MatchLowercase]{Menlo}
+\newfontface\smallcapsfont[Scale=0.75,LetterSpace=3.0]{Optima}
+\renewcommand\textsc[1]{{\smallcapsfont \uppercase{#1}}}
 
 % For nicely typeset tabular material
 \usepackage{booktabs}
@@ -32,7 +32,7 @@ $endif$
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 $if(numbersections)$
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{4}
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
@@ -42,23 +42,19 @@ $endif$
 
 % remove indentation
 \makeatletter
+\newlength{\fullwidthlength}
+\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+\makeatother
 % Paragraph indentation and separation for normal text
-\renewcommand{\@tufte@reset@par}{%
-  \setlength{\RaggedRightParindent}{1.0pc}%
-  \setlength{\JustifyingParindent}{0pc}%
-  \setlength{\parindent}{0pc}%
-  \setlength{\parskip}{0pt}%
-}
-\@tufte@reset@par
+% \renewcommand{\@tufte@reset@par}{%
+%   \setlength{\RaggedRightParindent}{1.0pc}%
+%   \setlength{\JustifyingParindent}{0pc}%
+%   \setlength{\parindent}{0pc}%
+%   \setlength{\parskip}{0pt}%
+% }
+% \@tufte@reset@par
 
 % Paragraph indentation and separation for marginal text
-\renewcommand{\@tufte@margin@par}{%
-  \setlength{\RaggedRightParindent}{0.5pc}%
-  \setlength{\JustifyingParindent}{0.5pc}%
-  \setlength{\parindent}{0.5pc}%
-  \setlength{\parskip}{0pt}%
-}
-\makeatother
 
 $if(title)$
 \title{$title$}
@@ -74,16 +70,22 @@ $endif$
 \fancyhead{}
 \fancyfoot{}
 \rhead{\thepage}
-\lhead{\textsc{\title}}
+$if(lhead)$\lhead{$lhead$}
+$else$
+\lhead{\thetitle}
+$endif$
 \chead{}
-\lfoot{}
+\lfoot{\footnotesize{Colin McLear}\\\footnotesize{\thedate}}
 \cfoot{}
 \rfoot{}
 
 
 \begin{document}
 $if(title)$
+\noindent
+\begin{minipage}{\fullwidthlength}
 \maketitle
+\end{minipage} 
 $endif$
 $if(toc)$
 {
@@ -94,8 +96,8 @@ $if(toc)$
 $endif$
 $body$
 
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+% $if(biblatex)$
+% \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 
 $endif$
 
