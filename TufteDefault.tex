@@ -1,4 +1,4 @@
-\documentclass[nols, notitlepage, notoc, sfsidenotes]{tufte-handout}
+\documentclass[nols, notitlepage, notoc]{tufte-handout}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsthm, amsmath, amssymb}
@@ -11,12 +11,16 @@
 \newcommand{\euro}{€}
 \usepackage{graphicx}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+$if(romanfont)$
+\setromanfont[Mapping=tex-text]{$romanfont$}
+$else$
 \setromanfont[Mapping=tex-text]{Palatino}
+$endif$
 \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Optima}
-\setmonofont[Scale=MatchLowercase]{Menlo}
+\setmonofont[Scale=MatchLowercase]{Inconsolata}
 \newfontface\smallcapsfont[Scale=0.75,LetterSpace=3.0]{Optima}
 \renewcommand\textsc[1]{{\smallcapsfont \uppercase{#1}}}
-
+\setsidenotefont{\sffamily}
 % For nicely typeset tabular material
 \usepackage{booktabs}
 
