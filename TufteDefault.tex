@@ -14,9 +14,17 @@
 $if(romanfont)$
 \setromanfont[Mapping=tex-text]{$romanfont$}
 $else$
-\setromanfont[Mapping=tex-text]{Palatino}
+% \setromanfont[Mapping=tex-text]{Palatino}
+\setromanfont[Mapping=tex-text]{Minion Pro}
+% \setromanfont[Mapping=tex-text]{Tinos}
+% \setromanfont[Mapping=tex-text]{Fournier MT Std}
 $endif$
-\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Optima}
+$if(sansfont)$
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{$sansfont$}
+$else$
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Verdana}
+$endif$
 \setmonofont[Scale=MatchLowercase]{Inconsolata}
 \newfontface\smallcapsfont[Scale=0.75,LetterSpace=3.0]{Optima}
 \renewcommand\textsc[1]{{\smallcapsfont \uppercase{#1}}}
@@ -79,7 +87,10 @@ $else$
 \lhead{\thetitle}
 $endif$
 \chead{}
+$if(lfoot)$\lfoot{\scriptsize{$lfoot$}}
+$else$
 \lfoot{\footnotesize{Colin McLear}\\\footnotesize{\thedate}}
+$endif$
 \cfoot{}
 \rfoot{}
 
