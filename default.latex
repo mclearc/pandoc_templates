@@ -309,13 +309,15 @@ $else$
 \rhead{\theauthor}
 $endif$
 $if(lfoot)$\lfoot{$lfoot$}$endif$
-% $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{}$endif$
-$if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
-$if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
+$if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{}$endif$
+% $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
+% $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{}$endif$
+$if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
 \fancypagestyle{firststyle}
 {
   \fancyhf{}
-  $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
+  % $if(cfoot)$\cfoot{$cfoot$}$else$\cfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
+  $if(rfoot)$\rfoot{$rfoot$}$else$\rfoot{\footnotesize \thepage\ | \pageref{LastPage}}$endif$
   \renewcommand{\headrulewidth}{0pt}
 }
 \thispagestyle{firststyle}
@@ -341,8 +343,8 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
+\addcontentsline{toc}{section}{References}
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
 $endif$
 $for(include-after)$
 $include-after$
