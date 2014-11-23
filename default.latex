@@ -291,6 +291,10 @@ $if(lof)$
 \listoffigures
 $endif$
 
+%%%% Keywords %%%%
+
+$for(keywords)$\textsc{Keywords: }Keywords$$sep$, $endfor$
+%%%%%%%%
 
 $if(spacing)$
 $else$
