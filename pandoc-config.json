@@ -335,7 +335,7 @@
 			"listings": false,
 
 			// In slideshow output, display list items one slide at a time.
-			"incremental": false,
+			"incremental": true,
 
 			// Header level at which to break slides. Above breaks sections, below
 			// creates subheads. Normally set based on context of document.
@@ -395,8 +395,8 @@
 			// .bib (BibTeX/BibLaTeX format), .ris (RIS format), .enl (EndNote format), .xml (EndNote XML format),
 			// .wos (ISI format), .medline (MEDLINE format), .copac (Copac format), or .json (citeproc JSON).
 			// If you want to use multiple bibliographies, just use this option repeatedly.
-			"bibliography": "/Users/Roambot/Dropbox/PDFLibrary/Master.bib",
-
+			/*"bibliography": "/Users/Roambot/Dropbox/PDFLibrary/Master.bib",
+*/
 			// Link to a CSL (http://citationstyles.org) file for formatting citations.
 			"csl": "/Users/Roambot/.pandoc/styles-master/modern-language-association.csl",
 

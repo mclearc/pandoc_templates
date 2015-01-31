@@ -84,7 +84,7 @@ $if(biblatex)$
             doi=true,           %print DOIs
             url=false,          %don't print URLs
             ]{biblatex}
-\addbibresource{/Users/Roambot/Dropbox/PDFLibrary/Master.bib}
+\addbibresource{/Users/Roambot/Dropbox/Work/Master.bib}
 % \DefineBibliographyStrings{english}{%
 %     backrefpage  ={p.}, % for single page number
 %     backrefpages ={pp.} % for multiple page numbers
@@ -232,7 +232,7 @@ $endif$
 $if(title)$
 \pretitle{\begin{flushleft}\huge}
 \title{\textbf{$title$}}
-\posttitle{\par\end{flushleft}\vspace*{-5mm}}
+\posttitle{\par\end{flushleft}}
 \setlength{\droptitle}{-80pt}
 $endif$
 $if(author)$
@@ -248,17 +248,6 @@ $if(date)$
 $else$
 \date{}
 $endif$
-
-% $if(title)$
-% \title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
-% $endif$
-% $if(author)$
-% \author{$for(author)$$author$$sep$ \and $endfor$}
-% $endif$
-% \date{$date$}
-% $for(header-includes)$
-% $header-includes$
-% $endfor$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -291,10 +280,6 @@ $if(lof)$
 \listoffigures
 $endif$
 
-%%%% Keywords %%%%
-
-$for(keywords)$\textsc{Keywords: }Keywords$$sep$, $endfor$
-%%%%%%%%
 
 $if(spacing)$
 $else$
@@ -347,6 +332,7 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
+\phantomsection
 \addcontentsline{toc}{section}{References}
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$

@@ -3,11 +3,12 @@
 \usepackage{lmodern}
 \usepackage{amsthm, amsmath, amssymb}
 \usepackage{fixltx2e} % provides \textsubscript
-\usepackage{setspace, graphicx, enumerate}
+\usepackage{setspace, graphicx, enumitem}
 \usepackage{mathspec}
 \usepackage{xltxtra,xunicode}
 \usepackage{fontspec}
 \usepackage{longtable}
+% \usepackage{titling}
 \newcommand{\euro}{€}
 \usepackage{graphicx}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
@@ -68,6 +69,27 @@ $endif$
 
 % Paragraph indentation and separation for marginal text
 
+% $if(title)$
+% \pretitle{\begin{flushleft}\huge}
+% \title{\textbf{$title$}}
+% \posttitle{\par\end{flushleft}\vspace*{-5mm}}
+% \setlength{\droptitle}{-80pt}
+% $endif$
+% $if(author)$
+% \preauthor{\begin{flushleft}\Large}
+% %\author{$for(author)$\Large $author.name$\vspace{0.05in}   $sep$ \and $endfor$}
+% \author{$for(author)$$author$ $if(affiliation)$\newline\footnotesize{$affiliation$}$endif$ $if(authoremail)$\newline\footnotesize $authoremail$ $endif$ $endfor$}
+% \postauthor{\par\end{flushleft}\vspace*{-9mm}}
+% $endif$
+% $if(date)$
+% \predate{\begin{flushleft}\footnotesize}
+% \date{$date$}
+% \postdate{\par\end{flushleft}}
+% $else$
+% \date{}
+% $endif$
+
+
 $if(title)$
 \title{$title$}
 $endif$
@@ -94,6 +116,8 @@ $endif$
 \cfoot{}
 \rfoot{}
 
+\usepackage{epigraph}
+% \setlength{\epigraphwidth}{1.2\textwidth}
 
 \begin{document}
 $if(title)$
